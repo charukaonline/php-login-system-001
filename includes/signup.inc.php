@@ -1,20 +1,24 @@
 <?php
 
+include_once 'dbh.inc.php';
+
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $uname = $_POST['uname'];
-    $pass = $_POST['pass'];
-    $cpass = $_POST['cpass'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $uni = mysqli_real_escape_string($conn, $_POST['uni']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $uname = mysqli_real_escape_string($conn, $_POST['uname']);
+    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
+    $cpass = mysqli_real_escape_string($conn, $_POST['cpass']);
+
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    $emptyInput = emptyInputSignup($name, $email, $uname, $pass, $cpass);
+    $emptyInput = emptyInputSignup($name, $uni, $email, $uname, $pass, $cpass);
     $invalidUname = invalidUname($uname);
     $invalidEmail = invalidEmail($email);
     $passMatch = passMatch($pass, $cpass);
-    $unameExists = unameExists($conn, $uname, $email);
+    $unameExists = unameExists($conn, $uname, $uni, $email);
 
     if ($emptyInput !== false) {
         header("Location:../signup.php?error=emptyInput");
@@ -36,10 +40,8 @@ if (isset($_POST['submit'])) {
         header("Location:../signup.php?error=unameTaken");
         exit();
     }
-    createUser($conn, $name, $email, $uname, $pass);
-
-}
-else {
+    createUser($conn, $name, $uni, $email, $uname, $pass);
+} else {
     header("Location: ../signup.php?error=signupError");
     exit();
 }

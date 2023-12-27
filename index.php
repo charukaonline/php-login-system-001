@@ -15,15 +15,24 @@
     <?php include_once 'header.php'; ?>
 
     <div class="hero">
-        <h1>Hello welcome,
+        <h1>Welcome,
             <?php
             if (isset($_SESSION["username"])) {
                 echo $_SESSION["username"];
             } else {
                 echo "Guest";
             }
-            ?></h1>
-        <p>A technology geek and a computer science undergraduate at University of Plymouth.</p>
+            ?>
+        </h1>
+        <p>
+            <?php
+            if (isset($_SESSION["useruni"])) {
+                echo "Studies at " .$_SESSION["useruni"];
+            } else {
+                echo "Please login to show your details";
+            }
+            ?>
+        </p>
     </div>
 
     <?php include_once 'footer.php'; ?>

@@ -1,5 +1,7 @@
 <?php
 
+include_once 'dbh.inc.php';
+
 if (isset($_POST['submit'])) {
     $uname = $_POST['uname'];
     $pass = $_POST['pass'];

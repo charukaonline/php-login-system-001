@@ -19,6 +19,7 @@
         <form action="/includes/signup.inc.php" method="POST">
 
             <input type="text" id="name" name="name" placeholder="Full Name">
+            <input type="text" id="uni" name="uni" placeholder="University">
             <input type="text" id="email" name="email" placeholder="Email Address">
             <input type="text" id="uname" name="uname" placeholder="Username">
             <input type="password" id="pass" name="pass" placeholder="Password">
