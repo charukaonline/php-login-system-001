@@ -5,6 +5,7 @@ include_once 'dbh.inc.php';
 if (isset($_POST['submit'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $uni = mysqli_real_escape_string($conn, $_POST['uni']);
+    $year = mysqli_real_escape_string($conn, $_POST['year']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $uname = mysqli_real_escape_string($conn, $_POST['uname']);
     $pass = mysqli_real_escape_string($conn, $_POST['pass']);
@@ -14,7 +15,7 @@ if (isset($_POST['submit'])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    $emptyInput = emptyInputSignup($name, $uni, $email, $uname, $pass, $cpass);
+    $emptyInput = emptyInputSignup($name, $uni, $year, $email, $uname, $pass, $cpass);
     $invalidUname = invalidUname($uname);
     $invalidEmail = invalidEmail($email);
     $passMatch = passMatch($pass, $cpass);
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
         header("Location:../signup.php?error=unameTaken");
         exit();
     }
-    createUser($conn, $name, $uni, $email, $uname, $pass);
+    createUser($conn, $name, $uni, $year, $email, $uname, $pass);
 } else {
     header("Location: ../signup.php?error=signupError");
     exit();

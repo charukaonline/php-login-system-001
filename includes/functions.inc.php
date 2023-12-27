@@ -4,10 +4,10 @@ include_once 'dbh.inc.php';
 
 //signup page functions
 
-function emptyInputSignup($name,$uni, $email, $uname, $pass, $cpass)
+function emptyInputSignup($name,$uni, $year, $email, $uname, $pass, $cpass)
 {
 
-    if (empty($name) || empty($uni) || empty($email) || empty($uname) || empty($pass) || empty($cpass)) {
+    if (empty($name) || empty($uni) || empty($year) || empty($email) || empty($uname) || empty($pass) || empty($cpass)) {
         $result = true;
     } else {
         $result = false;
@@ -71,10 +71,10 @@ function unameExists($conn, $uname, $email)
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $name, $uni, $email, $uname, $pass)
+function createUser($conn, $name, $uni, $year, $email, $uname, $pass)
 {
 
-    $sql = "INSERT INTO users (name, uni, email, uname, pass) VALUES (?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO users (name, uni, year, email, uname, pass) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -83,7 +83,7 @@ function createUser($conn, $name, $uni, $email, $uname, $pass)
     }
     $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssss", $name, $uni, $email, $uname, $hashedPass);
+    mysqli_stmt_bind_param($stmt, "ssssss", $name, $uni, $year, $email, $uname, $hashedPass);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("Location:../login.php");
@@ -125,6 +125,7 @@ function loginUser($conn, $uname, $pass)
         $_SESSION["useruname"] = $unameExists["uname"];
         $_SESSION["username"] = $unameExists["name"];
         $_SESSION["useruni"] = $unameExists["uni"];
+        $_SESSION["useryear"] = $unameExists["year"];
         header("Location:../index.php");
         exit();
     }

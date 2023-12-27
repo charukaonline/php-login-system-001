@@ -26,8 +26,8 @@
         </h1>
         <p>
             <?php
-            if (isset($_SESSION["useruni"])) {
-                echo "Studies at " .$_SESSION["useruni"];
+            if (isset($_SESSION["useruni"], $_SESSION["useryear"])) {
+                echo $_SESSION["useryear"]. " student at " .$_SESSION["useruni"];
             } else {
                 echo "Please login to show your details";
             }
