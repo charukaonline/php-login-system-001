@@ -9,13 +9,13 @@ if (isset($_POST['submit'])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputLogin($uname, $pass) !==false) {
+    if (emptyInputLogin($uname, $pass) !== false) {
+        header("Location:../login.php?error=emptyInput");
         exit();
     }
 
     loginUser($conn, $uname, $pass);
-}
-else {
+} else {
     header("Location: ../login.php");
     exit();
 }
