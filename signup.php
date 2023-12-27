@@ -12,9 +12,9 @@
 
 <script language="javascript" type="text/javascript">
     function signup_validation() {
-        if (document.signup.name.value == "" || document.signup.uni.value == "" || document.signup.email.value == "" ||
+        if (document.signup.name.value == "" || document.signup.uni.value == "" || document.signup.year.value == "" || document.signup.email.value == "" ||
             document.signup.uname.value == "" || document.signup.pass.value == "" || document.signup.cpass.value == "") {
-            alert("Please recheck your details!");
+            alert("Fill all the fields!");
         }
     }
 </script>
@@ -30,6 +30,7 @@
             <input type="text" id="name" name="name" placeholder="Full Name">
             <input type="text" id="uni" name="uni" placeholder="University">
             <select id="year" name="year">
+                <option value="" disabled selected>Select year</option>
                 <option value="1st year">1st Year</option>
                 <option value="2nd year">2nd Year</option>
                 <option value="3rd year">3rd Year</option>
