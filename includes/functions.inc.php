@@ -123,6 +123,7 @@ function loginUser($conn, $uname, $pass)
         session_start();
         $_SESSION["userid"] = $unameExists["id"];
         $_SESSION["useruname"] = $unameExists["uname"];
+        $_SESSION["useremail"] = $unameExists["email"];
         $_SESSION["username"] = $unameExists["name"];
         $_SESSION["useruni"] = $unameExists["uni"];
         $_SESSION["useryear"] = $unameExists["year"];

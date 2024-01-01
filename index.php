@@ -23,11 +23,15 @@
                 echo "Guest";
             }
             ?>
-        </h1>
+        </h1><br>
         <p>
             <?php
-            if (isset($_SESSION["useruni"], $_SESSION["useryear"])) {
+            if (isset($_SESSION["useruni"], $_SESSION["useryear"], $_SESSION["useruname"])) {
                 echo $_SESSION["useryear"]. " student at " .$_SESSION["useruni"];
+                echo "<br><br>";
+                echo "Username: " .$_SESSION["useruname"];
+                echo "<br>";
+                echo "Email: " .$_SESSION["useremail"];
             } else {
                 echo "Please login to show your details";
             }
